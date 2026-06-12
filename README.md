@@ -4,18 +4,41 @@ An end-to-end IoT smart doorbell system spanning edge inference, cloud storage, 
 
 ## Architecture
 
-```
-┌──────────────────────────────────┐   MQTT/TLS   ┌──────────────────────────────────┐
-│        UniHiker M10 (Edge)       │ ◀──────────▶ │       Laptop (Dashboard)         │
-│                                  │              │                                  │
-│  USB Camera                      │              │  Streamlit app                   │
-│    ↓ frames                      │              │  ├─ vis.js detection timeline    │
-│  YOLO ONNX inference             │              │  ├─ Cloudinary image viewer      │
-│    ↓ detections                  │              │  ├─ Class filter (multiselect)   │
-│  ├─ Cloudinary  (annotated JPEG) │──────────▶   │  └─ LED ON/OFF remote control   │
-│  ├─ InfluxDB    (metadata)       │──────────▶   │                                  │
-│  └─ HiveMQ      (press events)   │              │                                  │
-└──────────────────────────────────┘              └──────────────────────────────────┘
+```mermaid
+flowchart LR
+    subgraph Edge["UniHiker M10 (Edge)"]
+        CAM[USB Camera]
+        YOLO[YOLO ONNX Inference]
+        GUI[On-device GUI]
+        BELL[Doorbell Button]
+        LED[LED Pin P25]
+        CAM --> YOLO
+    end
+
+    subgraph Cloud["Cloud Services"]
+        CDN[Cloudinary\nImage Storage]
+        IDB[InfluxDB Cloud\nTime-series Metadata]
+        MQ[HiveMQ Cloud\nMQTT Broker TLS]
+    end
+
+    subgraph Dashboard["Laptop (Dashboard)"]
+        ST[Streamlit App]
+        TL[vis.js Timeline]
+        IMG[Image Viewer]
+        FILTER[Class Filter]
+        LEDCTL[LED Control]
+        ST --> TL & IMG & FILTER & LEDCTL
+    end
+
+    YOLO -->|annotated JPEG| CDN
+    YOLO -->|url · class · confidence| IDB
+    BELL -->|press event| MQ
+    MQ -->|LED command| LED
+
+    CDN -->|image URL| IMG
+    IDB -->|Flux query| TL
+    MQ -->|doorbell alert| ST
+    LEDCTL -->|on / off| MQ
 ```
 
 Both nodes only need outbound Internet access and do not need to share a LAN.
