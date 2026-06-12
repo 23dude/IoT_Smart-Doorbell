@@ -2,6 +2,10 @@
 
 An end-to-end IoT smart doorbell system spanning edge inference, cloud storage, time-series data, and a real-time web dashboard.
 
+## Demo
+
+[![Smart Doorbell Demo](https://img.youtube.com/vi/g99llM1LRGQ/0.jpg)](https://youtube.com/shorts/g99llM1LRGQ?feature=share)
+
 ## Architecture
 
 ```mermaid
