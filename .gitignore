@@ -1,0 +1,26 @@
+# Credentials — copy *.example.py → *.py and fill in your own values
+unihiker/device_config.py
+dashboard/dashboard_config.py
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# macOS
+.DS_Store
+__MACOSX/
+
+# Streamlit
+.streamlit/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Large media
+*.mp4
+*.mov

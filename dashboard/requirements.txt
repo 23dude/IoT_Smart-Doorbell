@@ -1,0 +1,13 @@
+# `width="stretch"` / `width="content"` on st.button and st.image needs a recent Streamlit
+# (AdvancedLayouts); older releases only support `use_container_width`.
+streamlit>=1.48
+# PyPI 0.3.0 still uses pkg_resources (Setuptools deprecation). Upstream fixed
+# this in git but did not publish a new release; pin that commit.
+streamlit-vis-timeline @ git+https://github.com/giswqs/streamlit-timeline.git@f7d61b7a778414eb526e1a7cfe3c0e86082a862f
+# That revision uses `import importlib_resources` (not stdlib importlib.resources).
+importlib_resources>=6.0.0
+streamlit-autorefresh>=1.0
+influxdb-client>=1.40
+paho-mqtt>=1.6,<2
+chime>=0.7.0
+Pillow

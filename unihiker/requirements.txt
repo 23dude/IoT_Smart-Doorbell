@@ -1,0 +1,10 @@
+onnxruntime
+opencv-python
+numpy
+Pillow
+cloudinary
+influxdb-client
+paho-mqtt
+# Pre-installed on the UniHiker image but listed here for completeness:
+pinpong
+unihiker
