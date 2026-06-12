@@ -4,7 +4,7 @@ An end-to-end IoT smart doorbell system spanning edge inference, cloud storage, 
 
 ## Demo
 
-[![Smart Doorbell Demo](https://img.youtube.com/vi/g99llM1LRGQ/0.jpg)](https://youtube.com/shorts/g99llM1LRGQ?feature=share)
+[![Smart Doorbell Demo]([https://img.youtube.com/vi/g99llM1LRGQ/0.jpg)](https://youtube.com/shorts/g99llM1LRGQ?feature=share](https://youtube.com/shorts/_1liCxbGmDA))
 
 ## Architecture
 
